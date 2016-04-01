@@ -31,7 +31,7 @@ Lines less than 81 characters are ignored.  Any character other than 1-9
 		}
 		puzzle = puzzle[:81] // ignore anything else on line
 		printGrid("\nPuzzle:", puzzle)
-		if s := solve(puzzle); s == "" {
+		if s := Solve(puzzle); s == "" {
 			fmt.Println("no solution")
 			failed++
 		} else {
@@ -58,7 +58,7 @@ func printGrid(title, s string) {
 // solve puzzle in 81 character string format.
 // if solved, result is 81 character string.
 // if not solved, result is the empty string.
-func solve(u string) string {
+func Solve(u string) string {
 	// construct an dlx object with 324 constraint columns.
 	// other than the number 324, this is not specific to sudoku.
 	d := newDlxObject(324)
@@ -161,7 +161,7 @@ func (d *dlx) text() string {
 	return string(b)
 }
 
-// the dlx algorithm 
+// the dlx algorithm
 func (d *dlx) search() bool {
 	h := d.h
 	j := h.r.c
